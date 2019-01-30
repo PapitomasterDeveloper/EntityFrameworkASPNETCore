@@ -5,10 +5,14 @@ namespace EFGetStarted.AspNetCore.NewDb.Models
 {
     public class BloggingContext : DbContext
     {
+
+        // The options to be used by DbContext
+        // The base keyword is used to access members of the base class
         public BloggingContext(DbContextOptions<BloggingContext> options)
             : base(options)
         { }
 
+        // DbSet is used when the type of entity is not know at build time
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
     }
