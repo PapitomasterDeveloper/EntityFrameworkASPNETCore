@@ -37,9 +37,19 @@ namespace EFGetStarted.AspNetCore.NewDb
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Accessing the services list object to add the DbContext during application startup
-            var connection = "Data Source=blogging.db";
-            services.AddDbContext<BloggingContext>
-                (options => options.UseSqlite(connection));
+            // Without connection strings
+
+            // var connection = "Data Source=blogging.db";
+            // services.AddDbContext<BloggingContext>
+            //     (options => options.UseSqlite(connection));
+
+            // With Connection Strings
+            
+            services.AddDbContext<BloggingContext>(options =>
+            // Using the Configuration object to access appsetting.json
+                options.UseSqlite(Configuration.GetConnectionString("BloggingDatabase")));
+
+            
             // BloggingContext requires
             // using EFGetStarted.AspNetCore.NewDb.Models;
             // UseSqlite requires
